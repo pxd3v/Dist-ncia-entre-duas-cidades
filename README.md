@@ -1,3 +1,4 @@
+
 # Distância entre duas cidades
 Exercício para a disciplina de Algoritmos e Estruturas de Dados com o intuito de ler um grafo de um arquivo texto que contém informações sobre nomes de cidades (vértices do grafo), suas respectivas distâncias (arestas do grafo) e calcular a menor distância entre duas cidades e o trajeto feito.
 
@@ -13,7 +14,11 @@ Nesse caso de exemplo a resposta será **A -> B -> C** somando **22km**
 
 ### Limitações da entrada
 O nome das cidades não pode ter mais de 20 caractéres e não pode ter espaços em branco, por exemplo:
-> Belo Horizonte.
+
+> Belo Horizonte
+
 não é uma entrada válida, mas
-> beloHorizonte.
-	é.
+
+> beloHorizonte
+
+é.
