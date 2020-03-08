@@ -13,7 +13,7 @@ Nesse caso de exemplo a resposta será **A -> B -> C** somando **22km**
 
 ### Limitações da entrada
 O nome das cidades não pode ter mais de 20 caractéres e não pode ter espaços em branco, por exemplo:
-- Belo Horizonte.
-	não é uma entrada válida, mas
-- beloHorizonte.
+> Belo Horizonte.
+não é uma entrada válida, mas
+> beloHorizonte.
 	é.
