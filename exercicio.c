@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#define nomeDaCidadeMaxLenght 20
+#define nomeDaCidadeMaxLenght 21
 
 struct estrada{
     char cidadeA[nomeDaCidadeMaxLenght];
@@ -17,7 +17,7 @@ struct trajeto{
 int len = 100;
 
 
-int pegaIndexDaCidade(int _numeroDeVertices, char _array[_numeroDeVertices][20], char _cidade[20]){
+int pegaIndexDaCidade(int _numeroDeVertices, char _array[_numeroDeVertices][nomeDaCidadeMaxLenght], char _cidade[nomeDaCidadeMaxLenght]){
     for(int i = 0; i < _numeroDeVertices; i++){
         if(strcmp(_array[i], _cidade) == 0)
         return i;
@@ -26,7 +26,7 @@ int pegaIndexDaCidade(int _numeroDeVertices, char _array[_numeroDeVertices][20],
 }
 
 // referencia: https://www.vivaolinux.com.br/script/Algoritmo-de-Dijkstra
-int dijkstra(int vertices,int origem,int destino,int *custos, char _array[vertices][20])
+int dijkstra(int vertices,int origem,int destino,int *custos, char _array[vertices][nomeDaCidadeMaxLenght])
 {
    int i,v, cont = 0;
    int *ant, *tmp;  
@@ -129,7 +129,7 @@ char lerChar(FILE *_arquivo){
 }
 
 char * lerCidade(FILE *_arquivo){
-    char *aux = malloc(20);
+    char *aux = malloc(nomeDaCidadeMaxLenght);
     fscanf(_arquivo, "%s", aux);
     getc(_arquivo);
     return aux;
@@ -159,16 +159,16 @@ struct estrada * lerEstradas(FILE *_arquivo, int _numeroDeEstradas, struct estra
     return aux;
 }
 
-int * gerarArrayDeCustos(int _nVertices, int _numeroDeEstradas, struct estrada _estradas[], char _cidades[_nVertices][20]){
+int * gerarArrayDeCustos(int _nVertices, int _numeroDeEstradas, struct estrada _estradas[], char _cidades[_nVertices][nomeDaCidadeMaxLenght]){
     int * aux;
     int cont = -1;
     aux = (int *) malloc(sizeof(int)*_nVertices*_nVertices);
     
     for(int cidadeA = 0; cidadeA < _nVertices; cidadeA++){
-        char auxA[20];
+        char auxA[nomeDaCidadeMaxLenght];
         strcpy(auxA, _cidades[cidadeA]);
         for(int cidadeB = 0; cidadeB < _nVertices; cidadeB++){
-            char auxB[20];
+            char auxB[nomeDaCidadeMaxLenght];
             strcpy(auxB, _cidades[cidadeB]);
             for(int estrada = 0; estrada < _numeroDeEstradas; estrada++){
                 // printf("%s %s %s %s %d\n", _estradas[estrada].cidadeA, auxA, _estradas[estrada].cidadeB, auxB, _estradas[estrada].dist);
@@ -196,8 +196,8 @@ struct trajeto lerTrajeto(FILE *_arquivo){
 }
 
 int contaVertices(struct estrada _estradas[], int _numeroDeEstradas){
-    char aux[_numeroDeEstradas * 2][20];
-    char saida[_numeroDeEstradas * 2][20];
+    char aux[_numeroDeEstradas * 2][nomeDaCidadeMaxLenght];
+    char saida[_numeroDeEstradas * 2][nomeDaCidadeMaxLenght];
 
     for(int i = 0, j = 0; i < _numeroDeEstradas; i++){
         strcpy(aux[j], _estradas[i].cidadeA);
@@ -225,8 +225,8 @@ int contaVertices(struct estrada _estradas[], int _numeroDeEstradas){
     return n;
 }
 
-void montaArrayDeCidades(struct estrada _estradas[], int _numeroDeEstradas, int _numeroDeVertices, char _array[_numeroDeVertices][20]){
-    char aux[_numeroDeEstradas * 2][20];
+void montaArrayDeCidades(struct estrada _estradas[], int _numeroDeEstradas, int _numeroDeVertices, char _array[_numeroDeVertices][nomeDaCidadeMaxLenght]){
+    char aux[_numeroDeEstradas * 2][nomeDaCidadeMaxLenght];
     
 
     for(int i = 0, j = 0; i < _numeroDeEstradas; i++){
@@ -283,7 +283,7 @@ int main() {
     struct estrada estradas[numeroDeEstradas]; lerEstradas(arquivo, numeroDeEstradas, estradas);
     struct trajeto trajeto = lerTrajeto(arquivo);
     int nVertices = contaVertices(estradas, numeroDeEstradas);
-    char cidades[nVertices][20];
+    char cidades[nVertices][nomeDaCidadeMaxLenght];
     montaArrayDeCidades(estradas, numeroDeEstradas, nVertices, cidades);
     int *custos = NULL; custos = gerarArrayDeCustos(nVertices, numeroDeEstradas, estradas, cidades);
 
